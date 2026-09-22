@@ -18,7 +18,7 @@
             --bg-surface-hover: #1a1a1a;
             --text-main: #f0f0f0;
             --text-secondary: #a0a0a0;
-            --accent: #d4af37; /* Cinematic Gold */
+            --accent: #d4af37;
             --accent-hover: #fce883;
             --font-sans: 'Montserrat', sans-serif;
             --font-serif: 'Playfair Display', serif;
@@ -207,28 +207,29 @@
             order: 1;
         }
 
+        /* UPDATED: Image Wrapper to fit screen completely */
         .img-wrapper {
             position: relative;
             overflow: hidden;
             border-radius: 4px;
-            aspect-ratio: 2/3;
             box-shadow: 0 10px 30px rgba(0,0,0,0.8);
-        }
-
-        .img-wrapper.landscape {
-            aspect-ratio: 16/9;
+            background-color: #050505; /* Fills empty space if aspect ratio differs */
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
 
         .img-wrapper img {
             width: 100%;
-            height: 100%;
-            object-fit: cover;
-            transition: transform 0.8s ease;
+            height: auto;
+            max-height: 85vh; /* Ensures the image never overflows the height of the user's screen */
+            object-fit: contain; /* Prevents cropping completely */
             display: block;
+            transition: transform 0.8s ease;
         }
 
         .img-wrapper:hover img {
-            transform: scale(1.05);
+            transform: scale(1.03);
         }
 
         .project-content h3 {
@@ -361,8 +362,7 @@
             .project:nth-child(even) .img-wrapper { order: 1; }
             .project:nth-child(even) .project-content { order: 2; }
             
-            .nav-links { display: none; } /* Simplified for mobile, could add hamburger */
-            
+            .nav-links { display: none; }
             .letter-box { padding: 2rem; }
         }
     </style>
@@ -454,24 +454,27 @@
 
             <!-- Golden Square -->
             <div class="project">
-                <div class="img-wrapper landscape">
+                <div class="img-wrapper">
                     <img src="golden-square.jpg" alt="Golden Square">
                 </div>
                 <div class="project-content">
                     <h3>Golden Square <br><span style="font-size:1.2rem; color:var(--text-secondary);">(Золотой Квадрат)</span></h3>
                     <p>A web series produced in collaboration with Almaty Central Standup Club.</p>
-                    <p><em>"В живых останется только один | ЗОЛОТОЙ КВАДРАТ | 2 СЕРИЯ"</em></p>
+                    
+                    <a href="https://www.youtube.com/watch?v=T1Ap_qyZlCk&t=692s" target="_blank" class="btn">Watch Episode 2</a>
                 </div>
             </div>
 
             <!-- If Needed -->
             <div class="project">
-                <div class="img-wrapper landscape">
+                <div class="img-wrapper">
                     <img src="if-needed.jpg" alt="If Needed">
                 </div>
                 <div class="project-content">
                     <h3>If Needed</h3>
                     <p>A poetic video installation featuring an Uyghur poem written by Muyesser Abdulehed and read by Sonya Imin. Cinematography by Talgat Sharshagan.</p>
+                    
+                    <a href="https://www.youtube.com/watch?v=uFEE8QsbRAc" target="_blank" class="btn">Watch on YouTube</a>
                 </div>
             </div>
 
