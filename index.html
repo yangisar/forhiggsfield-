@@ -1,0 +1,364 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Yadykar Ibraimov | Filmmaker & Artist</title>
+    <style>
+        /* CSS Variables for Cinematic Theme */
+        :root {
+            --bg-color: #0d0d0d;
+            --text-main: #f0f0f0;
+            --text-muted: #888888;
+            --accent: #d4af37; /* Warm cinematic highlight */
+            --font-main: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            --font-serif: "Playfair Display", Georgia, serif;
+        }
+
+        /* Base Styles */
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            font-family: var(--font-main);
+            line-height: 1.6;
+            -webkit-font-smoothing: antialiased;
+            position: relative;
+        }
+
+        /* Film Grain Overlay */
+        body::before {
+            content: "";
+            position: fixed;
+            top: 0; left: 0; width: 100vw; height: 100vh;
+            pointer-events: none;
+            z-index: 9999;
+            opacity: 0.04;
+            background-image: url('data:image/svg+xml,%3Csvg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg"%3E%3Cfilter id="noiseFilter"%3E%3CfeTurbulence type="fractalNoise" baseFrequency="0.65" numOctaves="3" stitchTiles="stitch"/%3E%3C/filter%3E%3Crect width="100%25" height="100%25" filter="url(%23noiseFilter)"/%3E%3C/svg%3E');
+        }
+
+        /* Typography */
+        h1, h2, h3 {
+            font-family: var(--font-serif);
+            font-weight: normal;
+        }
+
+        h1 {
+            font-size: clamp(3rem, 8vw, 6rem);
+            line-height: 1.1;
+            margin-bottom: 0.5rem;
+            letter-spacing: -0.02em;
+        }
+
+        h2 {
+            font-size: 2.5rem;
+            margin-bottom: 2rem;
+            border-bottom: 1px solid #333;
+            padding-bottom: 1rem;
+            color: var(--accent);
+        }
+
+        h3 {
+            font-size: 1.8rem;
+            margin-bottom: 0.5rem;
+        }
+
+        p {
+            margin-bottom: 1.5rem;
+            font-size: 1.1rem;
+            color: #cccccc;
+            max-width: 800px;
+        }
+
+        a {
+            color: var(--accent);
+            text-decoration: none;
+            transition: opacity 0.3s ease;
+        }
+
+        a:hover {
+            opacity: 0.7;
+            text-decoration: underline;
+        }
+
+        /* Layout */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        section {
+            padding: 6rem 0;
+        }
+
+        /* Header / Hero */
+        header {
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .subtitle {
+            font-size: 1.2rem;
+            color: var(--text-muted);
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+        }
+
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            padding: 2rem;
+            background: linear-gradient(to bottom, rgba(13,13,13,0.9) 0%, rgba(13,13,13,0) 100%);
+            z-index: 100;
+            display: flex;
+            justify-content: flex-end;
+            gap: 2rem;
+        }
+
+        nav a {
+            color: var(--text-main);
+            font-size: 0.9rem;
+            letter-spacing: 0.05em;
+            text-transform: uppercase;
+        }
+
+        /* 70mm Cinemascope Project Cards (2.35:1 Aspect Ratio) */
+        .project-grid {
+            display: flex;
+            flex-direction: column;
+            gap: 4rem;
+        }
+
+        .project-card {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+
+        .cinemascope-frame {
+            width: 100%;
+            aspect-ratio: 2.35 / 1;
+            background-color: #1a1a1a;
+            border: 1px solid #333;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .cinemascope-frame::after {
+            content: "2.35:1";
+            position: absolute;
+            color: #333;
+            font-family: var(--font-main);
+            font-size: 0.8rem;
+            letter-spacing: 0.2em;
+        }
+
+        .project-info {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 2rem;
+        }
+
+        .project-meta {
+            font-size: 0.9rem;
+            color: var(--text-muted);
+        }
+
+        .awards-list {
+            list-style-type: none;
+            font-size: 0.9rem;
+            color: var(--text-muted);
+        }
+        
+        .awards-list li {
+            margin-bottom: 0.5rem;
+            padding-left: 1rem;
+            border-left: 2px solid #333;
+        }
+
+        /* Footer / Contact */
+        footer {
+            padding: 6rem 0;
+            border-top: 1px solid #333;
+            text-align: center;
+        }
+
+        .contact-links {
+            display: flex;
+            justify-content: center;
+            gap: 3rem;
+            margin-top: 2rem;
+        }
+
+        .contact-links a {
+            font-size: 1.5rem;
+            font-family: var(--font-serif);
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .project-info {
+                grid-template-columns: 1fr;
+            }
+            nav {
+                justify-content: center;
+                gap: 1rem;
+            }
+            .contact-links {
+                flex-direction: column;
+                gap: 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <nav>
+        <a href="#about">About</a>
+        <a href="#films">Films</a>
+        <a href="#interactive">Interactive</a>
+        <a href="#contact">Contact</a>
+    </nav>
+
+    <div class="container">
+        <!-- Hero Section -->
+        <header>
+            <h1>Yadykar<br>Ibraimov</h1>
+            <div class="subtitle">Filmmaker • Director • Editor • Actor</div>
+        </header>
+
+        <!-- About Section -->
+        <section id="about">
+            <h2>About</h2>
+            <p>I'm a filmmaker and artist with a background in directing, editing, and acting. In recent years, I have focused primarily on directing documentaries and developing my own artistic projects. I'm also a professional actor with international experience, which has given me a particular understanding of performance, presence, and working with the camera from both sides of the process.</p>
+            <p>I have extensive experience in editing, which I began developing during my studies at the Zhurgenov Academy of Arts, learning from editors Nicolas Trembasiewicz and Christopher Robin Bell.</p>
+            <p>I find the world of AI-generated video both incredibly exciting and a little terrifying—it is like a weapon of immense power. I am deeply curious about what responsible and genuinely artistic filmmaking can become with it.</p>
+            <p style="color: var(--text-muted); font-size: 0.9rem; margin-top: 2rem;">
+                Based in Germany • Currently in Almaty • Father
+            </p>
+        </section>
+
+        <!-- Films Section -->
+        <section id="films">
+            <h2>Selected Works</h2>
+            
+            <div class="project-grid">
+                
+                <!-- Voice of the Glacier -->
+                <div class="project-card">
+                    <div class="cinemascope-frame">
+                        <!-- Image placeholder - replace with actual film still -->
+                    </div>
+                    <div class="project-info">
+                        <div>
+                            <h3>Voice of the Glacier (Голос Ледника)</h3>
+                            <p>An environmental eco-thriller feature documentary that documents the alarming rate at which the Tujuksu Glacier in Kazakhstan is disappearing due to the global climate crisis. Shot in absolute isolation at a remote mountain station at an altitude of 3,400 meters, it follows two glaciologists who climb the glacier on foot to document its decline.</p>
+                            <a href="https://mubi.com/en/kz/films/voice-of-the-glacier" target="_blank">View on MUBI &rarr;</a>
+                        </div>
+                        <div>
+                            <ul class="awards-list">
+                                <li><strong>World Premiere:</strong> Film Festival Cottbus, Germany (Nov 2023)</li>
+                                <li><strong>Best Cinematography:</strong> Touchstone IFF (Oct 2024)</li>
+                                <li><strong>Best Cinematography:</strong> UAFF Ankara, Turkey (May 2024)</li>
+                                <li><strong>Best Team Award:</strong> Bastau IFF, Almaty (Dec 2023)</li>
+                                <li><strong>Best Documentary Nominee:</strong> Cinema Verite, Iran (Dec 2023)</li>
+                                <li><strong>Best Documentary Nominee:</strong> Golden FEMI (Jun 2025)</li>
+                                <li><strong>Official Selection:</strong> VAASA Wildlife IFF (Sep 2024)</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Let Her Dance -->
+                <div class="project-card">
+                    <div class="cinemascope-frame"></div>
+                    <div class="project-info">
+                        <div>
+                            <h3>Let Her Dance</h3>
+                            <p>Short film exploring movement and resilience.</p>
+                            <a href="https://www.youtube.com/watch?v=rZ2Rx3kF1BU" target="_blank">Watch Film &rarr;</a>
+                        </div>
+                        <div>
+                            <ul class="awards-list">
+                                <li><strong>Official Selection:</strong> Balkan Can Kino, Athens (Nov 2022)</li>
+                                <li><strong>Official Selection (Decolonise):</strong> Diaspora Film Festival, NY (Jun 2024)</li>
+                                <li><strong>Best Short Film Nominee:</strong> ONED Festival, Toulouse (Aug 2023)</li>
+                                <li><strong>Official Selection:</strong> WideScreen Film & Music Video Festival (Nov 2024)</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Golden Square -->
+                <div class="project-card">
+                    <div class="cinemascope-frame"></div>
+                    <div class="project-info">
+                        <div>
+                            <h3>Golden Square (Золотой Квадрат)</h3>
+                            <p>Web series produced with Almaty Central Standup Club. <em>"В живых останется только один | ЗОЛОТОЙ КВАДРАТ | 2 СЕРИЯ"</em></p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- If Needed -->
+                <div class="project-card">
+                    <div class="cinemascope-frame"></div>
+                    <div class="project-info">
+                        <div>
+                            <h3>If Needed</h3>
+                            <p>A poetic video featuring an Uyghur poem by Muyesser Abdulehed, read by Sonya Imin. Cinematography by Talgat Sharshagan.</p>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- Interactive & Other Work -->
+        <section id="interactive">
+            <h2>Interactive & Performance</h2>
+            
+            <div class="project-info" style="margin-bottom: 4rem;">
+                <div>
+                    <h3>Vibe Coding: Daiynball Race</h3>
+                    <p>A browser-based mobile game created in collaboration with a Kazakh rap band. Playable on desktop and mobile environments.</p>
+                    <a href="https://yangisar.github.io/daiynball.race/" target="_blank">Play Game &rarr;</a>
+                </div>
+                
+                <div>
+                    <h3>Acting Portfolio</h3>
+                    <p>Professional actor with international experience, bringing a unique perspective to directing and blocking.</p>
+                    <a href="https://www.imdb.com/name/nm12366640/?ref_=vp_close" target="_blank">View IMDb Profile &rarr;</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact Section -->
+        <section id="contact">
+            <footer style="border: none; padding-bottom: 2rem;">
+                <h2>Let's Connect</h2>
+                <p style="margin: 0 auto; text-align: center;">Available for directing, editing, and creative collaborations.</p>
+                
+                <div class="contact-links">
+                    <a href="mailto:yangisaar@gmail.com">yangisaar@gmail.com</a>
+                    <a href="https://www.instagram.com/yangisar/" target="_blank">@yangisar</a>
+                </div>
+            </footer>
+        </section>
+    </div>
+
+</body>
+</html>
