@@ -3,262 +3,400 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Yadykar Ibraimov | Portfolio</title>
+    <title>Yadykar Ibraimov | Filmmaker & Artist</title>
+    
+    <!-- Importing cinematic fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
+
     <style>
-        /* CSS Variables for Cinematic Theme */
+        /* Modern Cinematic Variables */
         :root {
-            --bg-color: #0a0a0a;
-            --surface-color: #111111;
-            --text-main: #f4f4f4;
-            --text-muted: #a0a0a0;
-            --accent: #d4af37;
-            --font-main: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-            --font-serif: "Playfair Display", Georgia, serif;
+            --bg-base: #030303;
+            --bg-surface: #0f0f0f;
+            --bg-surface-hover: #1a1a1a;
+            --text-main: #f0f0f0;
+            --text-secondary: #a0a0a0;
+            --accent: #d4af37; /* Cinematic Gold */
+            --accent-hover: #fce883;
+            --font-sans: 'Montserrat', sans-serif;
+            --font-serif: 'Playfair Display', serif;
+            --transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
         }
 
-        /* Base Styles */
         * {
-            box-sizing: border-box;
             margin: 0;
             padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
         }
 
         body {
-            background-color: var(--bg-color);
+            background-color: var(--bg-base);
             color: var(--text-main);
-            font-family: var(--font-main);
-            line-height: 1.6;
+            font-family: var(--font-sans);
+            line-height: 1.7;
+            overflow-x: hidden;
             -webkit-font-smoothing: antialiased;
         }
 
-        /* Typography */
-        h1, h2, h3 {
+        /* Subtle Background Glow */
+        body::before {
+            content: '';
+            position: fixed;
+            top: -50%; left: -50%; width: 200%; height: 200%;
+            background: radial-gradient(circle at 50% 50%, rgba(212, 175, 55, 0.03) 0%, transparent 60%);
+            z-index: -1;
+            pointer-events: none;
+        }
+
+        h1, h2, h3, h4 {
             font-family: var(--font-serif);
-            font-weight: normal;
-        }
-
-        h1 {
-            font-size: clamp(2.5rem, 6vw, 5rem);
-            line-height: 1.1;
-            margin-bottom: 0.5rem;
-        }
-
-        h2 {
-            font-size: 2.2rem;
-            margin-bottom: 2.5rem;
-            border-bottom: 1px solid #333;
-            padding-bottom: 1rem;
-            color: var(--accent);
-        }
-
-        h3 {
-            font-size: 1.6rem;
-            margin-bottom: 1rem;
-            color: #fff;
-        }
-
-        p {
-            margin-bottom: 1.2rem;
-            font-size: 1.05rem;
-            color: #d0d0d0;
+            font-weight: 400;
         }
 
         a {
             color: var(--accent);
             text-decoration: none;
-            transition: opacity 0.3s ease;
+            transition: var(--transition);
         }
 
-        a:hover {
-            opacity: 0.7;
-            text-decoration: underline;
+        /* Navigation - Glassmorphism */
+        nav {
+            position: fixed;
+            top: 0; left: 0; width: 100%;
+            padding: 1.5rem 5%;
+            background: rgba(3, 3, 3, 0.7);
+            backdrop-filter: blur(15px);
+            -webkit-backdrop-filter: blur(15px);
+            z-index: 1000;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid rgba(255,255,255,0.05);
         }
 
-        /* Layout */
+        .nav-brand {
+            font-family: var(--font-serif);
+            font-size: 1.2rem;
+            color: var(--text-main);
+            letter-spacing: 1px;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2.5rem;
+        }
+
+        .nav-links a {
+            color: var(--text-main);
+            font-size: 0.85rem;
+            font-weight: 500;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            position: relative;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            width: 0; height: 1px;
+            bottom: -4px; left: 0;
+            background-color: var(--accent);
+            transition: var(--transition);
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        /* Container */
         .container {
-            max-width: 1000px;
+            max-width: 1200px;
             margin: 0 auto;
-            padding: 0 2rem;
+            padding: 0 5%;
         }
 
         section {
-            padding: 5rem 0;
+            padding: 8rem 0;
         }
 
-        /* Header / Hero */
-        header {
-            padding: 8rem 0 4rem 0;
-        }
-
-        .subtitle {
-            font-size: 1.1rem;
-            color: var(--text-muted);
-            letter-spacing: 0.1em;
-            text-transform: uppercase;
-        }
-
-        /* Navigation */
-        nav {
-            position: fixed;
-            top: 0;
-            width: 100%;
-            padding: 1.5rem 2rem;
-            background: rgba(10, 10, 10, 0.9);
-            backdrop-filter: blur(10px);
-            z-index: 100;
-            display: flex;
-            justify-content: flex-end;
-            gap: 2rem;
-            border-bottom: 1px solid #222;
-        }
-
-        nav a {
-            color: var(--text-main);
-            font-size: 0.85rem;
-            letter-spacing: 0.1em;
-            text-transform: uppercase;
-        }
-
-        /* Bio Section */
-        .bio-content p {
-            margin-bottom: 1.5rem;
-        }
-
-        /* Project Cards */
-        .project-grid {
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
             display: flex;
             flex-direction: column;
-            gap: 5rem;
+            justify-content: center;
+            padding-top: 5rem;
+            position: relative;
         }
 
-        .project-card {
-            display: grid;
-            grid-template-columns: 1fr 1.5fr;
-            gap: 3rem;
-            align-items: start;
+        .hero h1 {
+            font-size: clamp(3rem, 8vw, 7rem);
+            line-height: 1;
+            margin-bottom: 1rem;
+            color: #fff;
         }
 
-        .project-image-container {
-            width: 100%;
-            border-radius: 4px;
-            overflow: hidden;
-            background-color: var(--surface-color);
-            border: 1px solid #222;
+        .hero .subtitle {
+            font-size: clamp(1rem, 2vw, 1.2rem);
+            color: var(--text-secondary);
+            letter-spacing: 4px;
+            text-transform: uppercase;
+            font-weight: 300;
         }
 
-        .project-image {
-            width: 100%;
-            height: auto;
-            display: block;
-            object-fit: cover;
-        }
-
-        /* For horizontal images (like Golden Square & If Needed) */
-        .project-card.horizontal-img {
-            grid-template-columns: 1fr;
-            gap: 2rem;
-        }
-
-        .project-card.horizontal-img .project-image-container {
-            aspect-ratio: 16/9;
-        }
-
-        .project-card.horizontal-img .project-image {
-            height: 100%;
-        }
-
-        .awards-list {
-            list-style-type: none;
-            font-size: 0.9rem;
-            color: var(--text-muted);
-            margin-top: 1.5rem;
-            background: var(--surface-color);
-            padding: 1.5rem;
-            border-radius: 4px;
-            border: 1px solid #222;
-        }
-        
-        .awards-list li {
-            margin-bottom: 0.8rem;
-            padding-left: 1rem;
+        /* Letter / Bio Section */
+        .letter-box {
+            background: var(--bg-surface);
+            padding: 4rem;
+            border-radius: 2px;
             border-left: 2px solid var(--accent);
+            position: relative;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.5);
         }
 
-        .awards-list li:last-child {
+        .letter-box p {
+            margin-bottom: 1.5rem;
+            font-size: 1.1rem;
+            color: #ccc;
+        }
+
+        .letter-box p:last-child {
             margin-bottom: 0;
         }
 
-        /* Footer / Contact */
-        footer {
-            padding: 5rem 0;
-            border-top: 1px solid #333;
-            text-align: center;
-        }
-
-        .contact-links {
+        /* Project Cards */
+        .section-title {
+            font-size: 3rem;
+            margin-bottom: 4rem;
+            color: #fff;
             display: flex;
-            justify-content: center;
-            gap: 2rem;
-            margin-top: 2rem;
+            align-items: center;
+            gap: 1.5rem;
         }
 
-        .contact-links a {
-            font-size: 1.2rem;
-            padding: 0.5rem 1rem;
-            border: 1px solid #333;
-            border-radius: 4px;
+        .section-title::after {
+            content: '';
+            height: 1px;
+            flex-grow: 1;
+            background: linear-gradient(to right, rgba(212,175,55,0.3), transparent);
         }
-        
-        .contact-links a:hover {
-            border-color: var(--accent);
+
+        .project {
+            display: grid;
+            grid-template-columns: 1fr 1.2fr;
+            gap: 4rem;
+            margin-bottom: 8rem;
+            align-items: center;
+        }
+
+        .project:nth-child(even) {
+            grid-template-columns: 1.2fr 1fr;
+        }
+
+        .project:nth-child(even) .img-wrapper {
+            order: 2;
+        }
+
+        .project:nth-child(even) .project-content {
+            order: 1;
+        }
+
+        .img-wrapper {
+            position: relative;
+            overflow: hidden;
+            border-radius: 4px;
+            aspect-ratio: 2/3;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.8);
+        }
+
+        .img-wrapper.landscape {
+            aspect-ratio: 16/9;
+        }
+
+        .img-wrapper img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.8s ease;
+            display: block;
+        }
+
+        .img-wrapper:hover img {
+            transform: scale(1.05);
+        }
+
+        .project-content h3 {
+            font-size: 2.5rem;
+            margin-bottom: 1.5rem;
+            color: #fff;
+        }
+
+        .project-content p {
+            color: var(--text-secondary);
+            margin-bottom: 1.5rem;
+            font-size: 1.05rem;
+        }
+
+        .awards {
+            margin-top: 2rem;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255,255,255,0.1);
+        }
+
+        .awards li {
+            list-style: none;
+            margin-bottom: 0.5rem;
+            font-size: 0.9rem;
+            color: #bbb;
+            display: flex;
+            align-items: baseline;
+            gap: 0.5rem;
+        }
+
+        .awards li::before {
+            content: '✦';
+            color: var(--accent);
+            font-size: 0.7rem;
+        }
+
+        /* Buttons / Links */
+        .btn {
+            display: inline-block;
+            padding: 1rem 2rem;
+            border: 1px solid var(--accent);
+            color: var(--accent);
+            font-size: 0.85rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            background: transparent;
+            border-radius: 2px;
+            margin-top: 1.5rem;
+        }
+
+        .btn:hover {
+            background: var(--accent);
+            color: var(--bg-base);
             text-decoration: none;
         }
 
-        /* Responsive */
-        @media (max-width: 768px) {
-            .project-card {
+        /* Interactive Grid */
+        .interactive-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .interactive-card {
+            background: var(--bg-surface);
+            padding: 3rem;
+            border-radius: 4px;
+            border: 1px solid rgba(255,255,255,0.05);
+            transition: var(--transition);
+        }
+
+        .interactive-card:hover {
+            background: var(--bg-surface-hover);
+            transform: translateY(-5px);
+            border-color: rgba(212,175,55,0.3);
+        }
+
+        .interactive-card h3 {
+            font-size: 1.8rem;
+            margin-bottom: 1rem;
+        }
+
+        /* Footer */
+        footer {
+            padding: 6rem 5%;
+            text-align: center;
+            background: var(--bg-surface);
+            border-top: 1px solid rgba(255,255,255,0.05);
+        }
+
+        .footer-title {
+            font-size: 2.5rem;
+            font-family: var(--font-serif);
+            margin-bottom: 2rem;
+        }
+
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            flex-wrap: wrap;
+        }
+
+        .social-links a {
+            font-size: 1rem;
+            letter-spacing: 1px;
+            padding: 0.5rem 0;
+            position: relative;
+        }
+
+        .social-links a::after {
+            content: '';
+            position: absolute;
+            width: 0; height: 1px;
+            bottom: 0; left: 0;
+            background-color: var(--accent);
+            transition: var(--transition);
+        }
+
+        .social-links a:hover::after {
+            width: 100%;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 900px) {
+            .project, .project:nth-child(even) {
                 grid-template-columns: 1fr;
                 gap: 2rem;
             }
-            nav {
-                justify-content: center;
-                gap: 1.5rem;
-            }
-            .contact-links {
-                flex-direction: column;
-                gap: 1rem;
-            }
+            .project:nth-child(even) .img-wrapper { order: 1; }
+            .project:nth-child(even) .project-content { order: 2; }
+            
+            .nav-links { display: none; } /* Simplified for mobile, could add hamburger */
+            
+            .letter-box { padding: 2rem; }
         }
     </style>
 </head>
 <body>
 
     <nav>
-        <a href="#about">About</a>
-        <a href="#films">Films</a>
-        <a href="#interactive">More</a>
-        <a href="#contact">Contact</a>
+        <div class="nav-brand">Y. IBRAIMOV</div>
+        <div class="nav-links">
+            <a href="#about">About</a>
+            <a href="#films">Films</a>
+            <a href="#interactive">More</a>
+            <a href="#contact">Contact</a>
+        </div>
     </nav>
 
     <div class="container">
         <!-- Hero Section -->
-        <header>
-            <h1>Yadykar Ibraimov</h1>
+        <section class="hero">
+            <h1>Yadykar<br>Ibraimov</h1>
             <div class="subtitle">Filmmaker • Director • Editor • Actor</div>
-        </header>
+        </section>
 
-        <!-- About Section (Exact Bio Text) -->
+        <!-- About / Letter Section -->
         <section id="about">
-            <h2>About</h2>
-            <div class="bio-content">
-                <p>Hi, friends,</p>
+            <div class="letter-box">
+                <p>Hi, dear Higgsfield team,</p>
                 <p>My name is Yadykar. I’m a filmmaker and artist with a background in directing, editing, and acting.</p>
                 <p>In recent years, I have focused primarily on directing documentaries and developing my own artistic projects. I’m also a professional actor with international experience, which has given me a particular understanding of performance, presence, and working with the camera from both sides of the process.</p>
                 <p>I have extensive experience in editing, which I began developing during my studies at the Zhurgenov Academy of Arts. Along the way, I had the opportunity to learn from editors Nicolas Trembasiewicz and Christopher Robin Bell. English is my primary language of communication and the language I use for most of my professional and informational work.</p>
                 <p>And I’m a father.</p>
                 <p>I find the world of AI-generated video both incredibly exciting and a little terrifying. It’s like a weapon of immense power, and I’m very curious about what responsible and genuinely artistic filmmaking can become with it.</p>
                 <p>I already have several creative ideas and directions that I would love to explore through AI filmmaking. I would be very interested in joining Higgsfield as an author and creative filmmaker, and experimenting with what I can bring to your team.</p>
-                <p>I am legally based in Germany, and I am currently in Almaty</p>
+                <p>I am legally based in Germany, and I am currently in Almaty.</p>
                 <p>At this stage, I would especially love to have a meeting and explore how my experience and creative perspective could contribute to what you are building.</p>
                 <p>Best,<br>Yadykar</p>
             </div>
@@ -266,113 +404,110 @@
 
         <!-- Films Section -->
         <section id="films">
-            <h2>Films</h2>
+            <h2 class="section-title">Selected Films</h2>
             
-            <div class="project-grid">
-                
-                <!-- Voice of the Glacier -->
-                <div class="project-card">
-                    <div class="project-image-container">
-                        <!-- Replace 'voice-of-the-glacier.jpg' with your actual image file name -->
-                        <img src="voice-of-the-glacier.jpg" alt="Voice of the Glacier Poster" class="project-image">
-                    </div>
-                    <div class="project-info">
-                        <h3>Voice of the Glacier (Голос Ледника)</h3>
-                        <p><strong>Overview:</strong> An environmental eco-thriller that documents the alarming rate at which the Tujuksu Glacier in Kazakhstan is disappearing due to the global climate crisis.</p>
-                        <p><strong>The Setting:</strong> Shot in absolute isolation at a remote mountain station at an altitude of 3,400 meters.</p>
-                        <p><strong>The Premise:</strong> It follows the daily lives and dangerous work of two glaciologists/researchers who climb the glacier on foot to measure and document its decline.</p>
-                        <p><strong>The Stakes:</strong> The Tujuksu glacier has lost roughly 57 million cubic meters of ice since 1958. Scientists predict it could completely disappear by 2050, which would trigger severe water shortages and socioeconomic instability across Central Asia.</p>
-                        <a href="https://mubi.com/en/kz/films/voice-of-the-glacier" target="_blank" style="display:inline-block; margin-top:1rem;">Watch Trailer / View on MUBI &rarr;</a>
-                        
-                        <ul class="awards-list">
-                            <li><strong>Nov 2023</strong> — Cottbus IFF, Germany (World Premiere)</li>
-                            <li><strong>Dec 2023</strong> — Bastau IFF, Almaty (Artistic Value & Creative Endeavor Award)</li>
-                            <li><strong>Dec 2023</strong> — Cinema Verite, Iran (Best Documentary Nominee)</li>
-                            <li><strong>May 2024</strong> — UAFF Ankara, Turkey (Best Cinematography Award)</li>
-                            <li><strong>Sep 2024</strong> — Wildlife Vaasa, Finland (Official Selection)</li>
-                            <li><strong>Oct 2024</strong> — Touchstone IFF (Best Cinematography Award)</li>
-                            <li><strong>Jun 2025</strong> — Golden FEMI (Best Documentary Nominee)</li>
-                        </ul>
-                    </div>
+            <!-- Voice of the Glacier -->
+            <div class="project">
+                <div class="img-wrapper">
+                    <img src="voice-of-the-glacier.jpg" alt="Voice of the Glacier">
                 </div>
+                <div class="project-content">
+                    <h3>Voice of the Glacier <br><span style="font-size:1.2rem; color:var(--text-secondary);">(Голос Ледника)</span></h3>
+                    <p><strong>Overview:</strong> An environmental eco-thriller that documents the alarming rate at which the Tujuksu Glacier in Kazakhstan is disappearing due to the global climate crisis.</p>
+                    <p><strong>The Setting:</strong> Shot in absolute isolation at a remote mountain station at an altitude of 3,400 meters.</p>
+                    <p><strong>The Premise:</strong> It follows the daily lives and dangerous work of two glaciologists/researchers who climb the glacier on foot to measure and document its decline.</p>
+                    <p><strong>The Stakes:</strong> The Tujuksu glacier has lost roughly 57 million cubic meters of ice since 1958. Scientists predict it could completely disappear by 2050, which would trigger severe water shortages and socioeconomic instability across Central Asia.</p>
+                    
+                    <a href="https://mubi.com/en/kz/films/voice-of-the-glacier" target="_blank" class="btn">Watch on MUBI</a>
 
-                <!-- Let Her Dance -->
-                <div class="project-card">
-                    <div class="project-image-container">
-                        <!-- Replace 'let-her-dance.jpg' with your actual image file name -->
-                        <img src="let-her-dance.jpg" alt="Let Her Dance Poster" class="project-image">
-                    </div>
-                    <div class="project-info">
-                        <h3>Let Her Dance</h3>
-                        <p>A short film exploring movement, space, and perspective.</p>
-                        <a href="https://www.youtube.com/watch?v=rZ2Rx3kF1BU" target="_blank" style="display:inline-block; margin-top:1rem;">Watch on YouTube &rarr;</a>
-                        
-                        <ul class="awards-list">
-                            <li><strong>Nov 2022</strong> — Balkan Can Kino, Athens (Official Selection — Decolonise category)</li>
-                            <li><strong>Aug 2023</strong> — ONED Festival, Toulouse (Official Selection)</li>
-                            <li><strong>Jun 2024</strong> — Diaspora Film Festival, New York (Best Short Film Nominee)</li>
-                            <li><strong>Nov 2024</strong> — WideScreen Film & Music Video Festival (Official Selection)</li>
-                        </ul>
-                    </div>
+                    <ul class="awards">
+                        <li><strong>Nov 2023</strong> — Cottbus IFF, Germany (World Premiere)</li>
+                        <li><strong>Dec 2023</strong> — Bastau IFF, Almaty (Artistic Value & Creative Endeavor Award)</li>
+                        <li><strong>Dec 2023</strong> — Cinema Verite, Iran (Best Documentary Nominee)</li>
+                        <li><strong>May 2024</strong> — UAFF Ankara, Turkey (Best Cinematography Award)</li>
+                        <li><strong>Sep 2024</strong> — Wildlife Vaasa, Finland (Official Selection)</li>
+                        <li><strong>Oct 2024</strong> — Touchstone IFF (Best Cinematography Award)</li>
+                        <li><strong>Jun 2025</strong> — Golden FEMI (Best Documentary Nominee)</li>
+                    </ul>
                 </div>
-
-                <!-- Golden Square -->
-                <div class="project-card horizontal-img">
-                    <div class="project-image-container">
-                        <!-- Replace 'golden-square.jpg' with your actual image file name -->
-                        <img src="golden-square.jpg" alt="Golden Square Still" class="project-image">
-                    </div>
-                    <div class="project-info">
-                        <h3>Golden Square (Золотой Квадрат)</h3>
-                        <p>Web series produced with Almaty Central Standup Club. <br><em>"В живых останется только один | ЗОЛОТОЙ КВАДРАТ | 2 СЕРИЯ"</em></p>
-                    </div>
-                </div>
-
-                <!-- If Needed -->
-                <div class="project-card horizontal-img">
-                    <div class="project-image-container">
-                        <!-- Replace 'if-needed.jpg' with your actual image file name -->
-                        <img src="if-needed.jpg" alt="If Needed Still" class="project-image">
-                    </div>
-                    <div class="project-info">
-                        <h3>If Needed</h3>
-                        <p>Poetic video featuring an Uyghur poem read by Sonya Imin.</p>
-                    </div>
-                </div>
-
             </div>
+
+            <!-- Let Her Dance -->
+            <div class="project">
+                <div class="img-wrapper">
+                    <img src="let-her-dance.jpg" alt="Let Her Dance">
+                </div>
+                <div class="project-content">
+                    <h3>Let Her Dance</h3>
+                    <p>A cinematic short film exploring themes of movement, identity, and spatial resistance.</p>
+                    
+                    <a href="https://www.youtube.com/watch?v=rZ2Rx3kF1BU" target="_blank" class="btn">Watch on YouTube</a>
+
+                    <ul class="awards">
+                        <li><strong>Nov 2022</strong> — Balkan Can Kino, Athens (Official Selection — Decolonise category)</li>
+                        <li><strong>Aug 2023</strong> — ONED Festival, Toulouse (Official Selection)</li>
+                        <li><strong>Jun 2024</strong> — Diaspora Film Festival, New York (Best Short Film Nominee)</li>
+                        <li><strong>Nov 2024</strong> — WideScreen Film & Music Video Festival (Official Selection)</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Golden Square -->
+            <div class="project">
+                <div class="img-wrapper landscape">
+                    <img src="golden-square.jpg" alt="Golden Square">
+                </div>
+                <div class="project-content">
+                    <h3>Golden Square <br><span style="font-size:1.2rem; color:var(--text-secondary);">(Золотой Квадрат)</span></h3>
+                    <p>A web series produced in collaboration with Almaty Central Standup Club.</p>
+                    <p><em>"В живых останется только один | ЗОЛОТОЙ КВАДРАТ | 2 СЕРИЯ"</em></p>
+                </div>
+            </div>
+
+            <!-- If Needed -->
+            <div class="project">
+                <div class="img-wrapper landscape">
+                    <img src="if-needed.jpg" alt="If Needed">
+                </div>
+                <div class="project-content">
+                    <h3>If Needed</h3>
+                    <p>A poetic video installation featuring an Uyghur poem written by Muyesser Abdulehed and read by Sonya Imin. Cinematography by Talgat Sharshagan.</p>
+                </div>
+            </div>
+
         </section>
 
-        <!-- Interactive & Other Work -->
+        <!-- Interactive & Acting Section -->
         <section id="interactive">
-            <h2>Interactive & Acting</h2>
+            <h2 class="section-title">Interactive & Acting</h2>
             
-            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 3rem;">
-                <div>
-                    <h3>Vibe Coding: Daiynball Race</h3>
-                    <p>A browser-based mobile game created in collaboration with a Kazakh rap band. Playable on desktop and mobile.</p>
-                    <a href="https://yangisar.github.io/daiynball.race/" target="_blank">Play Game &rarr;</a>
+            <div class="interactive-grid">
+                <!-- Vibe Coding -->
+                <div class="interactive-card">
+                    <h3>Daiynball Race</h3>
+                    <p style="color: var(--text-secondary); margin-bottom: 1.5rem;">A browser-based mobile game created in collaboration with a Kazakh rap band. Playable on desktop and mobile.</p>
+                    <a href="https://yangisar.github.io/daiynball.race/" target="_blank" class="btn">Play Game</a>
                 </div>
                 
-                <div>
-                    <h3>Acting</h3>
-                    <p>Professional actor with international experience across multiple projects.</p>
-                    <a href="https://www.imdb.com/name/nm12366640/?ref_=vp_close" target="_blank">View IMDb Profile &rarr;</a>
+                <!-- Acting -->
+                <div class="interactive-card">
+                    <h3>Professional Acting</h3>
+                    <p style="color: var(--text-secondary); margin-bottom: 1.5rem;">International acting experience across multiple film and media projects.</p>
+                    <a href="https://www.imdb.com/name/nm12366640/?ref_=vp_close" target="_blank" class="btn">View IMDb</a>
                 </div>
             </div>
-        </section>
-
-        <!-- Contact Section -->
-        <section id="contact">
-            <footer>
-                <h2>Let's Connect</h2>
-                <div class="contact-links">
-                    <a href="mailto:yangisaar@gmail.com">Email: yangisaar@gmail.com</a>
-                    <a href="https://www.instagram.com/yangisar/" target="_blank">Instagram: @yangisar</a>
-                </div>
-            </footer>
         </section>
     </div>
+
+    <!-- Contact Footer -->
+    <footer id="contact">
+        <h2 class="footer-title">Let's Create Together.</h2>
+        <div class="social-links">
+            <a href="mailto:yangisaar@gmail.com">yangisaar@gmail.com</a>
+            <a href="https://www.instagram.com/yangisar/" target="_blank">Instagram: @yangisar</a>
+            <a href="https://www.imdb.com/name/nm12366640/?ref_=vp_close" target="_blank">IMDb Profile</a>
+        </div>
+    </footer>
 
 </body>
 </html>
